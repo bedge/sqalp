@@ -304,17 +304,17 @@ Improvements
 
   Provide element names rather than raw, unlabelled data.
 
-  Handle `-r -o json` case. Currently numpy's `Infinity` makes `json.dumps()` barf.
-
 - Support different persistence implementations. Currently uses sqlite:///:memory.
 
-  Allow multiple instances to write data into a common DB.
-  Break up 'ingest data' option from 'reporting' options.
+  Using 'real' backend DB allows:
 
-- Use single instance version/metadata
+  - Multiple instances to write data into a common DB.
+
+- Break up 'ingest data' option from 'reporting' options.
+
+- Use single instance version/metadata, eg: bumpversion & friends to avoid duplication
 
 
-
-Buge
+Bugs
 ====
 

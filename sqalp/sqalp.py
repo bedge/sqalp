@@ -1,19 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-This is a skeleton file that can serve as a starting point for a Python
-console script. To run this script uncomment the following line in the
-entry_points section in setup.cfg:
-
-    console_scripts =
-     fibonacci = sqalp.skeleton:run
-
-Then run `python setup.py install` which will install the command `fibonacci`
-inside your current environment.
-Besides console scripts, the header (i.e. until _logger...) of this file can
-also be used as template for Python modules.
-
-Note: This skeleton file can be safely removed if not needed!
+Command line utility to parse/report on apache log files.
+See: https://github.com/bedge/sqalp/blob/master/README.rst
 """
 from __future__ import division, print_function, absolute_import
 
@@ -31,7 +20,6 @@ import sqlalchemy
 from sqlalchemy import create_engine, Column, String, Integer, DateTime, func
 from sqlalchemy.orm import sessionmaker
 from tabulate import tabulate, tabulate_formats
-import numpy
 
 __version__ = 'unknown'
 from sqalp import __version__
@@ -181,6 +169,7 @@ def get_session(loglevel):
 
 
 def output(data, output_format):
+    # type: (OrderedDict, str) -> None
     if output_format == 'json':
         print(json.dumps(data))
     else:
@@ -244,10 +233,9 @@ def get_by_date_verb_ratio(session):
             if 'GET' not in day_counter[os].keys():
                 os_ratio = 0
             elif 'POST' not in day_counter[os].keys():
-                os_ratio = numpy.Inf
+                os_ratio = 'NAN'
             else:
-                ratio = numpy.float64(
-                    day_counter[os]["GET"]) / day_counter[os]["POST"]
+                ratio = float(day_counter[os]["GET"]) / day_counter[os]["POST"]
                 os_ratio = '{:.4}'.format(ratio)
 
             results[day].append([os, os_ratio])
