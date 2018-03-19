@@ -302,8 +302,11 @@ Implementation Notes
 Releases
 ========
 
+Release process
+
 .. code-block::
 
+    bumpversion -v --feature
     python setup.py bdist_wheel
     twine upload -r pypitest dist/sqalp-<version>-py3-none-any.whl
     twine upload -r pypi dist/sqalp-<version>-py3-none-any.whl
@@ -327,10 +330,3 @@ Improvements
   - Multiple instances to write data into a common DB.
 
 - Break up 'ingest data' option from 'reporting' options.
-
-- Use single instance version/metadata, eg: bumpversion & friends to avoid duplication
-
-
-Bugs
-====
-
