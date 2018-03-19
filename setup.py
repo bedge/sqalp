@@ -27,7 +27,7 @@ setup(
     #
     # $ pip install sqalp
     #
-    # And where it will live on PyPI: https://pypi.org/project/alp/
+    # And where it will live on PyPI: https://pypi.org/project/sqalp/
     #
     # There are some restrictions on what makes a valid project name
     # specification here:
