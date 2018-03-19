@@ -1,0 +1,8 @@
+# Include the license file
+include LICENSE.txt
+
+# Include the data files
+recursive-include data *.zip
+
+# Generated in unit testing
+prune data/sample.log
