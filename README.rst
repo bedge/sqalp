@@ -292,6 +292,15 @@ Implementation Notes
        ]
     }
 
+Releases
+========
+
+.. code-block::
+
+    python setup.py bdist_wheel
+    twine upload -r pypitest dist/sqalp-<version>-py3-none-any.whl
+    twine upload -r pypi dist/sqalp-<version>-py3-none-any.whl
+
 
 Improvements
 ============
