@@ -194,17 +194,11 @@ def get_by_date_by_ua(session):
     results = OrderedDict()
     for day in session.query(func.distinct(LogMsg.time_received_date)).all():
         day = day[0]
-        results[day] = OrderedDict()
-        for ua in session.query(func.distinct(LogMsg.user_agent)).filter(
-                LogMsg.time_received_date == day).all():
-            ua = ua[0]
-            ua_count = session.query(func.count()).filter(
-                LogMsg.time_received_date == day).filter(
-                LogMsg.user_agent == ua).one()[0]
-            results[day][ua] = ua_count
-        results[day] = [[_[0], _[1]] for _ in
-                        sorted(results[day].items(), key=lambda t: t[1],
-                               reverse=True)][:3]
+        day_counts = [[_[0], _[1]] for _ in
+                      session.query(LogMsg.user_agent, func.count('*')).filter(
+                          LogMsg.time_received_date == day).group_by(
+                          LogMsg.user_agent).all()]
+        results[day] = sorted(day_counts, key=lambda x: x[1], reverse=True)[:3]
     _logger.debug(f'results: {results}')
     return results
 
@@ -223,13 +217,12 @@ def get_by_date_verb_ratio(session):
                           LogMsg.request_method).all():
             try:
                 day_counter[os][method]: int = count
-            except Exception as ex:
+            except KeyError:
                 day_counter[os] = OrderedDict()
                 day_counter[os][method] = count
 
         results[day] = []
         for os in day_counter:
-            # results[day][os] = OrderedDict()
             if 'GET' not in day_counter[os].keys():
                 os_ratio = 0
             elif 'POST' not in day_counter[os].keys():
