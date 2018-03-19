@@ -8,17 +8,25 @@ Apache Log Parser
 Description
 ===========
 
-Command line tool that parses the apache logs log and presents the following info to the user:
+Command line tool that parses the apache logs log and presents the following (somewhat contrived) info to the user:
 
 - Number of requests served by day
 - 3 most frequent User Agents by day
 - ratio of GET's to POST's by OS by day
 
-Wanted to learn SqlAlchemy and this seemed like a good time.
+Rationale: Excuse to play with SqlAlchemy and pypi packaging.
 
 
 Installation
 ============
+
+Stable:
+
+.. code-block::
+
+    pip install sqalp
+
+Latest:
 
 .. code-block::
 
@@ -64,11 +72,11 @@ Help:
 
 - Input
 
-  default to stdin so it can be used as a commandline filter in the unix pipe philosophy
+  default to stdin for commandline filter in the unix pipe philosophy
 
 - Output
 
-  Supports all formats provided by tabulate package, and, json, for piping to other scripts
+  Supports all formats provided by tabulate package, and, json for piping to other scripts
 
 
 Main commands
