@@ -59,7 +59,6 @@ Help:
       -u, --ua_frequency    User-agent stats by day
       -r, --ratio           Ratio of GET to POST by day by OS
       -O, --os_approximate  Approximate OS to family grouping (Win XP == Win, etc)
-      -s, --summary         Summary of file scope
       -o OUTPUT_FORMAT, --output_format OUTPUT_FORMAT
                             table/output formats, one of ['fancy_grid', 'grid',
                             'html', 'jira', 'latex', 'latex_booktabs',
